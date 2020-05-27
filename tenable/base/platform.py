@@ -21,9 +21,9 @@ class APIPlatform(APISession):
         self._url = '{}://{}:{}{}'.format(
             kwargs.get('scheme', self._scheme),
             kwargs.get('address', os.getenv(
-                '{}_ADDRESS'.format(self._env_base), self._address),
+                '{}_ADDRESS'.format(self._env_base), self._address)),
             kwargs.get('port', os.getenv(
-                '{}_PORT'.format(self._env_base), self._port),
+                '{}_PORT'.format(self._env_base), self._port)),
             kwargs.get('base_path', self._base_path)
         )
         super(APIPlatform, self).__init__(**kwargs)
