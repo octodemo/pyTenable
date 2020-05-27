@@ -1,8 +1,8 @@
-from tenable.platform import TenablePlatform
+from tenable.base.platform import APIPlatform
 import os
 
 
-class TenableOT(TenablePlatform):
+class TenableOT(APIPlatform):
     '''
     '''
     _base_path = '/v1'
