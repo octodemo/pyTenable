@@ -7,7 +7,7 @@ from restfly.iterator import APIIterator
 #from .connectors import ConnectorsAPI
 #from .groups import GroupsAPI
 from .session import SessionAPI
-#from .users import UsersAPI
+from .users import UsersAPI
 
 
 class PlatformAPI(APIEndpoint):
@@ -31,8 +31,8 @@ class PlatformAPI(APIEndpoint):
         '''
         return SessionAPI(self._api)
 
-#    @property
-#    def users(self):
-#        '''
-#        '''
-#        return UsersAPI(self._api)
+    @property
+    def users(self):
+        '''
+        '''
+        return UsersAPI(self._api)
