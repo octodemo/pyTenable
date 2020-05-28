@@ -94,7 +94,7 @@ class UsersAPI(APIEndpoint):
             >>> for user in tio.platform.users.list():
             ...     print(user)
         '''
-        return self._get()
+        return self._get().users
 
     def delete(self, id):
         '''
@@ -112,7 +112,7 @@ class UsersAPI(APIEndpoint):
         Examples:
             >>> tio.users.delete(1)
         '''
-        self._api.delete(id)
+        return self._delete(id)
 
     def edit(self, id, **kwargs):
         '''
@@ -209,3 +209,11 @@ class UsersAPI(APIEndpoint):
             >>> keys = tio.platform.users.gen_api_keys(1)
         '''
         return self._put('{}/keys'.format(id))
+
+    # NOTE: The two-factor related APIs weren't added here.  Those APIs would
+    #       need to be tested, and there wasn't much of any usage from outside
+    #       the UI.  If there is demand for them from the community, they can
+    #       be added back.
+    #       * /users/{id}/two-factor/send-verification
+    #       * /users/{id}/two-factor/verify-code
+    #       * /users/{id}/two-factor

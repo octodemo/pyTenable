@@ -152,7 +152,7 @@ class SessionAPI(APIEndpoint):
 
     # NOTE: The two-factor related APIs weren't added here.  Those APIs would
     #       need to be tested, and there wasn't much of any usage from outside
-    #       the UI.  If there is demand for them fromt he community, they can
+    #       the UI.  If there is demand for them from the community, they can
     #       be added back.
     #       * /session/two-factor/send-verification
     #       * /session/two-factor/verify-code
