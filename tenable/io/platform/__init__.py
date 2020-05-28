@@ -17,7 +17,7 @@ class PlatformAPI(APIEndpoint):
         The interface object for connectors API  See the
         :doc:`connectors documentation <connectors>` for full details.
         '''
-        #return ConnectorsAPI(self._api)
+        return ConnectorsAPI(self._api)
 
     @property
     def groups(self):
