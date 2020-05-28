@@ -1,18 +1,14 @@
-'''
-Sessions
-========
-
-.. rst-class:: hide-signature
-.. autoclass:: SessionAPI
-    :members:
-'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.utils import check
-from tenable.errors import (
-    UnexpectedValueError,
-    UnauthorizedError,
-    base_msg_func as msg_func
-)
+from marshmallow import Schema, fields
+from .users import ChangePasswordSchema
+from restfly.errors import UnauthorizedError, base_msg_func as msg_func
+
+
+class UpdateUserSchema(Schema):
+    name = fields.String()
+    email = fields.Email()
+
 
 class SessionAPI(APIEndpoint):
     _path = 'session'
@@ -51,9 +47,8 @@ class SessionAPI(APIEndpoint):
         Examples:
             >>> tio.platform.session.update(name='John Doe')
         '''
-        check('name', kwargs.get('name'), str)
-        check('email', kwargs.get('email'), str, pattern='email')
-        return self._put(json=kwargs)
+        payload = UpdateUserSchema().load(kwargs)
+        return self._put(json=payload)
 
     def impersonate(self, username=None, user_id=None):
         '''
@@ -108,18 +103,20 @@ class SessionAPI(APIEndpoint):
         :devportal:`Endpoint Documentation <session-password>`
 
         Args:
-            current (str):
-                The current password.
-            new (str):
-                The new password.
+            current_password (str): The current password.
+            password (str): The new password.
+
+        Returns:
+            :obj:`None`:
+                The password has been successfully changed.
 
         Examples:
-            >>> tio.platform.session.change_password('old', 'new')
+            >>> tio.platform.session.change_password(
+            ...     current_password='old_pass',
+            ...     password='new_pass')
         '''
-        return self._put('chpasswd', json={
-            'current_password': check('current', current, str),
-            'password': check('new', new, str)
-        })
+        payload = ChangePasswordSchema().load(kwargs)
+        return self._put('chpasswd', json=payload)
 
     def keys(self):
         '''

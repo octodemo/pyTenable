@@ -62,29 +62,39 @@ class TenableIO(APIPlatform):
     @property
     def cs(self):
         '''
+        The interface object for Tenable.io Container Security.  See the
+        :doc:`cs documentation <cs/index>` for full details.
         '''
         return ConSecAPI(self)
 
     @property
     def lumin(self):
         '''
+        The interface object for Tenable.io Lumin.  See the
+        :doc:`lumin documentation <lumin/index>` for full details.
         '''
         return LuminAPI(self)
 
     @property
     def platform(self):
         '''
+        The interface object for Tenable.io platform.  See the
+        :doc:`platform documentation <platform/index>` for full details.
         '''
         return PlatformAPI(self)
 
     @property
     def vm(self):
         '''
+        The interface object for Tenable.io Vulnerability Management.  See the
+        :doc:`vm documentation <vm/index>` for full details.
         '''
         return VulnMngtAPI(self)
 
     @property
     def was(self):
         '''
+        The interface object for Tenable.io Web Application Scanning.  See the
+        :doc:`was documentation <was/index>` for full details.
         '''
         return WebAppAPI(self)

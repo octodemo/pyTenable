@@ -1,14 +1,6 @@
-'''
-Users
-=====
-
-.. rst-class:: hide-signature
-.. autoclass:: UsersAPI
-    :members:
-'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.utils import dict_merge
-from marshmallow import Schema, fields, ValidationError
+from marshmallow import Schema, fields
 
 
 class UserSchema(Schema):
