@@ -1,6 +1,9 @@
 from setuptools import setup, find_packages
 import os
 
+with open('tenable/version.py', 'r') as vfile:
+    exec(vfile.read())
+
 try:
     long_description = open(
         os.path.join(
@@ -12,7 +15,7 @@ except:
 
 setup(
     name='pyTenable',
-    version='2.0.0a',
+    version=version,
     description='Python library to interface into Tenable\'s products and applications',
     author='Tenable, Inc.',
     long_description=long_description,

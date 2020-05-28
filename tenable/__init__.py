@@ -1,5 +1,4 @@
-__version__ = '2.0.0a'
-
+from .version import version as __version__
 from .io import TenableIO
 #from .ot import TenableOT
 #from .sc import TenableSC
