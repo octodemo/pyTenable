@@ -12,10 +12,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-autodoc_mock_imports = [
-    'semver',
-    'restfly',
-]
+autodoc_mock_imports = []
 
 import os, sys, datetime
 sys.path.insert(0, os.path.abspath('..'))
