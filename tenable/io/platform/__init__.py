@@ -14,31 +14,27 @@ class PlatformAPI(APIEndpoint):
     @property
     def connectors(self):
         '''
-        The interface object for connectors API  See the
-        :doc:`connectors documentation <connectors>` for full details.
+        The interface object for the :doc:`Connectors APIs <connectors>`.
         '''
         return ConnectorsAPI(self._api)
 
     @property
     def groups(self):
         '''
-        The interface object for user groups API  See the
-        :doc:`groups documentation <groups>` for full details.
+        The interface object for the :doc:`Groups APIs <groups>`.
         '''
         return GroupsAPI(self._api)
 
     @property
     def session(self):
         '''
-        The interface object for session API  See the
-        :doc:`session documentation <session>` for full details.
+        The interface object for the :doc:`Session APIs <session>`.
         '''
         return SessionAPI(self._api)
 
     @property
     def users(self):
         '''
-        The interface object for users API  See the
-        :doc:`users documentation <users>` for full details.
+        The interface object for the :doc:`Users APIs <users>`.
         '''
         return UsersAPI(self._api)

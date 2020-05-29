@@ -1,4 +1,5 @@
 from tenable.base.platform import APIPlatform
+from restfly.errors import NotImplementedError
 from .cs import ConSecAPI
 from .lumin import LuminAPI
 from .platform import PlatformAPI
@@ -62,39 +63,42 @@ class TenableIO(APIPlatform):
     @property
     def cs(self):
         '''
-        The interface object for Tenable.io Container Security.  See the
-        :doc:`cs documentation <cs/index>` for full details.
+        The interface object for the
+        :doc:`Tenable.io Container Security APIs <cs/index>`.
         '''
-        return ConSecAPI(self)
+        #return ConSecAPI(self)
+        raise NotImplementedError('ConSec API Interface not yet written.')
 
     @property
     def lumin(self):
         '''
-        The interface object for Tenable.io Lumin.  See the
-        :doc:`lumin documentation <lumin/index>` for full details.
+        The interface object for the :doc:`Tenable.io Lumin APIs <lumin/index>`.
         '''
-        return LuminAPI(self)
+        #return LuminAPI(self)
+        raise NotImplementedError('Lumin API Interface not yet written.')
 
     @property
     def platform(self):
         '''
-        The interface object for Tenable.io platform.  See the
-        :doc:`platform documentation <platform/index>` for full details.
+        The interface object for the
+        :doc:`Tenable.io Platform APIs <platform/index>`.
         '''
         return PlatformAPI(self)
 
     @property
     def vm(self):
         '''
-        The interface object for Tenable.io Vulnerability Management.  See the
-        :doc:`vm documentation <vm/index>` for full details.
+        The interface object for the
+        :doc:`Tenable.io Vulnerability Management APIs <vm/index>`.
         '''
-        return VulnMngtAPI(self)
+        #return VulnMngtAPI(self)
+        raise NotImplementedError('VM API Interface not yet written.')
 
     @property
     def was(self):
         '''
-        The interface object for Tenable.io Web Application Scanning.  See the
-        :doc:`was documentation <was/index>` for full details.
+        The interface object for the
+        :doc:`Tenable.io Web Application Scanning APIs <was/index>`.
         '''
-        return WebAppAPI(self)
+        #return WebAppAPI(self)
+        raise NotImplementedError('WAS API Interface not yet written.')
