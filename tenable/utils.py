@@ -1,4 +1,8 @@
 from box import Box
+try:
+    from urlparse import urlparse
+except:
+    from urllib.parse import urlparse
 from restfly.utils import (
     dict_flatten,
     dict_clean,
@@ -13,3 +17,11 @@ def check(name, obj, expected_type, **kwargs):
     }
     kwargs['pattern_map'] = dict_merge(patterns, kwargs.get('pattern_map', dict()))
     return _chk(name, obj, expected_type, **kwargs)
+
+
+def url_validator(uri):
+    try:
+        r = urlparse(uri)
+        return all([r.scheme, r.netloc])
+    except:
+        return False
