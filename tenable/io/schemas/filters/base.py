@@ -2,14 +2,11 @@ from marshmallow import (
     Schema,
     fields,
     pre_load,
-    post_load,
     validate as v,
-    validates,
     validates_schema,
     ValidationError,
 )
 from copy import copy
-from uuid import UUID
 
 
 class BaseFilterRuleSchema(Schema):
@@ -127,4 +124,3 @@ class BaseFilterRuleSchema(Schema):
             f['pattern'](item['value'])
         if f.get('choices'):
             f['choices'](item['value'])
-
