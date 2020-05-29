@@ -1,11 +1,12 @@
 from restfly import APISession
-from tenable import __version__
+from tenable.utils import url_validator
+from tenable.version import version
 import os
 
 
 class APIPlatform(APISession):
     _lib_name = 'pyTenable'
-    _lib_version = __version__
+    _lib_version = version
     _box = True
     _retries = 5
     _env_base = ''
@@ -26,6 +27,13 @@ class APIPlatform(APISession):
                 '{}_PORT'.format(self._env_base), self._port)),
             kwargs.get('base_path', self._base_path)
         )
+
+        # if the constructed URL isn't valid, then we will throw a TypeError
+        # to inform the caller that something isn't right here.
+        if not url_validator(self._url):
+            raise TypeError('{url} is not a valid URL'.format(url=self._url))
+
+        # Call the RESTfly constructor
         super(APIPlatform, self).__init__(**kwargs)
 
     def _authenticate(self, **kwargs):
