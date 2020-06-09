@@ -5,6 +5,7 @@ from .lumin import LuminAPI
 from .platform import PlatformAPI
 from .vm import VulnMngtAPI
 from .was import WebAppAPI
+import json
 
 
 def cloud_error_msg_func(r, **kwargs):
@@ -39,6 +40,19 @@ class TenableIO(APIPlatform):
     def __init__(self, **kwargs):
         kwargs['error_func'] = kwargs.get('error_func', cloud_error_msg_func)
         super(TenableIO, self).__init__(**kwargs)
+
+    def _resp_error_check(self, response, **kwargs):
+        # no additional error checking is actually needed, however we want to
+        # ensure that the request uuid is returned as a log message for every
+        # response in the debug logs.
+        self._log.debug('Response:{}'.format(json.dumps({
+                'status': response.status_code,
+                'method': response.request.method,
+                'url': response.request.url,
+                'request_uuid': response.headers.get('X-Request-Uuid'),
+            })
+        ))
+        return response
 
     def _retry_request(self, resp, retries, **kwargs):
         '''
@@ -91,8 +105,8 @@ class TenableIO(APIPlatform):
         The interface object for the
         :doc:`Tenable.io Vulnerability Management APIs <vm/index>`.
         '''
-        #return VulnMngtAPI(self)
-        raise NotImplementedError('VM API Interface not yet written.')
+        return VulnMngtAPI(self)
+        #raise NotImplementedError('VM API Interface not yet written.')
 
     @property
     def was(self):
