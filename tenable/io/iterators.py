@@ -1,5 +1,7 @@
 from restfly.iterator import APIIterator
-
+from tenable.io.schemas.pagination import (
+    PaginationSchemaV1
+)
 
 class Version1Iterator(APIIterator):
     '''
@@ -8,6 +10,15 @@ class Version1Iterator(APIIterator):
     _resource = None
     _path = None
     _query = dict()
+
+    def __init__(self, api, resource, path, **kwargs):
+        self._api = api
+        self._resource = resource
+        self._path = path
+        self._max_pages = kwargs.pop('max_pages', None)
+        self._max_items = kwargs.pop('max_items', None)
+        schema = PaginationSchemaV1()
+        self._query = schema.load(kwargs)
 
     def _get_page(self):
         '''

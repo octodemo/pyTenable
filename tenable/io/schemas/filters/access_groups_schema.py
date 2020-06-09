@@ -1,5 +1,5 @@
 from .base import BaseFilterRuleSchema
-from marshmallow import fields, post_load
+from marshmallow import fields, post_load, pre_load
 
 
 class AccessGroupsFilterSchema(BaseFilterRuleSchema):
@@ -24,6 +24,17 @@ class AccessGroupsFilterSchema(BaseFilterRuleSchema):
     This format is then typically passed into the query arguments of a GET call.
     '''
     value = fields.List(fields.String())
+
+    @pre_load
+    def serialize_tuple(self, rule, **kwargs):
+        '''
+        Handles serializing the standardized tuple format into a dictionary that
+        can then be validated and processed.
+        '''
+        super(AccessGroupsFilterSchema, self).serialize_tuple(rule, **kwargs)
+        rule['oper'] = rule.get('operator', rule.get('oper'))
+        rule['value'] = rule.get('terms', rule.get('value'))
+        return rule
 
     @post_load(pass_many=True)
     def reformat_many_filters(self, data, **kwargs):
