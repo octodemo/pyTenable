@@ -1,3 +1,15 @@
+'''
+Session
+=======
+
+Methods described in this section relate to the the session API under the
+platform section.  These methods can be accessed at
+``TenableIO.platform.session``.
+
+.. rst-class:: hide-signature
+.. autoclass:: SessionAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.utils import check
 from marshmallow import Schema, fields

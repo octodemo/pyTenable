@@ -1,3 +1,15 @@
+'''
+Users
+=====
+
+Methods described in this section relate to the the users API under the
+platform section.  These methods can be accessed at
+``TenableIO.platform.users``.
+
+.. rst-class:: hide-signature
+.. autoclass:: UsersAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.utils import dict_merge
 from marshmallow import Schema, fields

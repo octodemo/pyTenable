@@ -1,13 +1,13 @@
-API Documentation
-=================
+Products
+========
 
 .. toctree::
     :hidden:
     :glob:
 
-    io/*
-    nessus/*
-    nnm/*
-    ot/*
-    sc/*
-    *
+    io/index
+    nessus/index
+    nnm/index
+    ot/index
+    sc/index
+    downloads/index

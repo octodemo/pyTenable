@@ -1,3 +1,15 @@
+'''
+Agent Exclusions
+================
+
+Methods described in this section relate to the the agent exclusions API under
+the vm section.  These methods can be accessed at
+``TenableIO.vm.agent_exclusions``.
+
+.. rst-class:: hide-signature
+.. autoclass:: AgentExclusionsAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.io.schemas.exclusions import ExclusionCreateSchema, ExclusionSchema
 

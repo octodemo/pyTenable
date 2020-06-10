@@ -1,3 +1,15 @@
+'''
+Access Groups
+=============
+
+Methods described in this section relate to the the access groups API under the
+vm section.  These methods can be accessed at
+``TenableIO.vm.access_groups``.
+
+.. rst-class:: hide-signature
+.. autoclass:: AccessGroupsAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from tenable.io.schemas.filters import AccessGroupsFilterSchema
 from tenable.io.schemas.pagination import PaginationSchemaV1

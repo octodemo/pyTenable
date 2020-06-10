@@ -1,7 +1,21 @@
+'''
+Platform
+========
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    connectors
+    groups
+    session
+    users
+
+.. rst-class:: hide-signature
+.. autoclass:: PlatformAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
-from restfly.iterator import APIIterator
-
-
 from .connectors import ConnectorsAPI
 from .groups import GroupsAPI
 from .session import SessionAPI

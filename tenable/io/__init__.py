@@ -1,3 +1,20 @@
+'''
+Tenable.io
+==========
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    cs/index
+    lumin/index
+    platform/index
+    vm/index
+    was/index
+
+.. autoclass:: TenableIO
+    :members:
+'''
 from tenable.base.platform import APIPlatform
 from restfly.errors import NotImplementedError
 from .cs import ConSecAPI
@@ -33,6 +50,58 @@ def cloud_error_msg_func(r, **kwargs):
 
 class TenableIO(APIPlatform):
     '''
+    The Tenable.io object is the primary interaction point for users to
+    interface with Tenable.io via the pyTenable library.  All of the API
+    endpoint classes that have been written will be grafted onto this class.
+
+    Args:
+        access_key (str, optional):
+            The user's API access key for Tenable.io  If an access key isn't
+            specified, then the library will attempt to read the environment
+            variable ``TIO_ACCESS_KEY`` to acquire the key.
+        secret_key (str, optional):
+            The user's API secret key for Tenable.io  If a secret key isn't
+            specified, then the library will attempt to read the environment
+            variable ``TIO_SECRET_KEY`` to acquire the key.
+        url (str, optional):
+            The base URL that the paths will be appended onto.  The default
+            is ``https://cloud.tenable.com``
+        retries (int, optional):
+            The number of retries to make before failing a request.  The
+            default is ``5``.
+        backoff (float, optional):
+            If a 429 response is returned, how much do we want to backoff
+            if the response didn't send a Retry-After header.  The default
+            backoff is ``1`` second.
+        vendor (str, optional):
+            The vendor name for the User-Agent string.
+        product (str, optional):
+            The product name for the User-Agent string.
+        build (str, optional):
+            The version or build identifier for the User-Agent string.
+        timeout (int, optional):
+            The connection timeout parameter informing the library how long to
+            wait in seconds for a stalled response before terminating the
+            connection.  If unspecified, the default is 120 seconds.
+
+    Examples:
+        Basic Example:
+
+        >>> from tenable.io import TenableIO
+        >>> tio = TenableIO('ACCESS_KEY', 'SECRET_KEY')
+
+        Example with proper identification:
+
+        >>> tio = TenableIO('ACCESS_KEY', 'SECRET_KEY',
+        >>>     vendor='Company Name',
+        >>>     product='My Awesome Widget',
+        >>>     build='1.0.0')
+
+        Example with proper identification leveraging environment variables for
+        access and secret keys:
+
+        >>> tio = TenableIO(
+        >>>     vendor='Company Name', product='Widget', build='1.0.0')
     '''
     _address = 'cloud.tenable.com'
     _env_base = 'TIO'

@@ -1,3 +1,21 @@
+'''
+Vuln Management
+===============
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    access_groups
+    agent_config
+    agent_exclusions
+    exclusions
+    filters
+
+.. rst-class:: hide-signature
+.. autoclass:: VulnMngtAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 
 from .access_groups import AccessGroupsAPI

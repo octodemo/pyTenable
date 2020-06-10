@@ -1,3 +1,15 @@
+'''
+Agent Config
+============
+
+Methods described in this section relate to the the agent config API under the
+vm section.  These methods can be accessed at
+``TenableIO.vm.agent_config``.
+
+.. rst-class:: hide-signature
+.. autoclass:: AgentConfigAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from marshmallow import Schema, fields, pre_load, validate
 

@@ -1,3 +1,15 @@
+'''
+Connectors
+==========
+
+Methods described in this section relate to the the connectors API under the
+platform section.  These methods can be accessed at
+``TenableIO.platform.connectors``.
+
+.. rst-class:: hide-signature
+.. autoclass:: ConnectorsAPI
+    :members:
+'''
 from tenable.base.endpoint import APIEndpoint
 from restfly.utils import dict_merge
 from tenable.io.iterators import Version1Iterator

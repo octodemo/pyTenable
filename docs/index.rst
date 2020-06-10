@@ -30,4 +30,5 @@ unnecessary boilerplate code.
     :hidden:
     :glob:
 
+    quickstart/index
     api/index
