@@ -75,6 +75,11 @@ class AccessGroupSchema(Schema):
         return data
 
 
+class AccessGroupCreateSchema(AccessGroupSchema):
+    name = fields.String(required=True)
+    all_users = fields.Boolean(default=False)
+
+
 class AccessGroupsAPI(APIEndpoint):
     _path = 'access-groups'
 
@@ -121,22 +126,21 @@ class AccessGroupsAPI(APIEndpoint):
         Examples:
             Allow all users to see 192.168.0.0/24:
 
-            >>> tio.access_groups.create('Example',
+            >>> tio.vm.access_groups.create('Example',
             ...     [('ipv4', 'eq', ['192.168.0.0/24'])],
             ...     all_users=True)
 
             Allow everyone in a specific group id to see specific hosts:
 
-            >>> tio.access_groups.create('Example',
+            >>> tio.vm.access_groups.create('Example',
             ...     [('netbios_name', 'eq', ['dc1.company.tld']),
             ...      ('netbios_name', 'eq', ['dc2.company.tld'])],
             ...     principals=[
             ...         ('group', '32a0c314-442b-4aed-bbf5-ba9cf5cafbf4')
             ... ])
         '''
-        kwargs['all_users'] = kwargs.get('all_users', False)
-        payload = AccessGroupSchema()
-        return self._post(json=payload.load(kwargs))
+        schema = AccessGroupCreateSchema()
+        return self._post(json=schema.load(kwargs))
 
     def edit(self, id, **kwargs):
         '''
@@ -180,9 +184,9 @@ class AccessGroupsAPI(APIEndpoint):
                 "all assets" group or a user-defined one.
         '''
         details = self.details(id)
-        payload = AccessGroupSchema()
+        schema = AccessGroupSchema()
         return self._put(id,
-            json=payload.load(dict_merge(self.details(id), kwargs))
+            json=schema.load(dict_merge(self.details(id), kwargs))
         )
 
     def delete(self, id):
@@ -259,7 +263,7 @@ class AccessGroupsAPI(APIEndpoint):
 
             Retrieving all of the windows agents:
 
-            >>> groups = tio.access_groups.list(filters=[('name', 'eq', 'win')])
+            >>> groups = tio.vm.access_groups.list(filters=[('name', 'eq', 'win')])
             >>> for group in groups:
             ...     print(group)
         '''
