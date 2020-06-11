@@ -182,7 +182,7 @@ class AgentExclusionsAPI(APIEndpoint):
         '''
         Delete an agent exclusion.
 
-        :devportal:`agent-exclusions: delete <agent-exclusions-delete>`
+        :devportal:`Endpoint documentation <agent-exclusions-delete>`
 
         Args:
             id (int): The id of the exclusion object in Tenable.io

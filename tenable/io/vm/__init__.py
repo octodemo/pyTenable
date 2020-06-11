@@ -9,6 +9,7 @@ Vuln Management
     access_groups
     agent_config
     agent_exclusions
+    agents
     exclusions
     filters
 
@@ -21,6 +22,8 @@ from tenable.base.endpoint import APIEndpoint
 from .access_groups import AccessGroupsAPI
 from .agent_config import AgentConfigAPI
 from .agent_exclusions import AgentExclusionsAPI
+from .agents import AgentsAPI
+from .assets import AssetsAPI
 from .exclusions import ExclusionsAPI
 from .filters import FiltersAPI
 
@@ -45,6 +48,20 @@ class VulnMngtAPI(APIEndpoint):
         The interface object for the :doc:`Agent Exclusion APIs <agent_exclusions>`.
         '''
         return AgentExclusionsAPI(self._api)
+
+    @property
+    def agents(self):
+        '''
+        The interface object for the :doc:`Agents APIs <agents>`.
+        '''
+        return AgentsAPI(self._api)
+
+    @property
+    def assets(self):
+        '''
+        The interface object for the :doc:`Assets APIs <assets>`.
+        '''
+        return AssetsAPI(self._api)
 
     @property
     def exclusions(self):
