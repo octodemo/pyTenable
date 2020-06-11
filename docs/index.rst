@@ -13,7 +13,7 @@ Release v\ |release|.
 .. image:: https://img.shields.io/github/license/tenable/pyTenable.svg
     :target: https://github.com/tenable/pytenable
 
-Indroduction
+Introduction
 ------------
 
 pyTenable is an interface library into the Tenable suite of products.  The aim

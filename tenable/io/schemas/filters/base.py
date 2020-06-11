@@ -57,8 +57,7 @@ class BaseFilterRuleSchema(Schema):
         ...     many=True
         ... )
     '''
-    filters = dict()
-    filter_check = False
+    filters = False
     name = fields.String()
     oper = fields.String()
     value = fields.String()
@@ -69,7 +68,6 @@ class BaseFilterRuleSchema(Schema):
         flag to true.
         '''
         self.filters = f
-        self.filter_check = True
 
     @pre_load
     def serialize_tuple(self, rule, **kwargs):
@@ -92,25 +90,27 @@ class BaseFilterRuleSchema(Schema):
         '''
         # We don't want to modify the original filter data, so we will be
         # performing a shallow copy instead of the default ref assignment.
-        f = copy(self.filters.get(value, dict()))
+        if self.filters:
+            f = copy(self.filters.get(value, dict()))
 
-        # If no filter was returned and filter checking was enabled, then we
-        # should throw an error informing the caller that the filter wasn't a
-        # supported filter.
-        if self.filter_check and f == dict():
-            raise ValidationError('not a supported filter')
+            # If no filter was returned and filter checking was enabled, then we
+            # should throw an error informing the caller that the filter wasn't
+            # a supported filter.
+            if f == dict():
+                raise ValidationError('not a supported filter')
 
-        # Convert the pattern, choices, and operators into the expected
-        # validators, overloading the original data.
-        if f.get('pattern'):
-            f['pattern'] = v.Regexp(f['pattern'])
-        if f.get('choices'):
-            f['choices'] = v.OneOf(f['choices'])
-        if f.get('operators'):
-            f['operators'] = v.OneOf(f['operators'])
+            # Convert the pattern, choices, and operators into the expected
+            # validators, overloading the original data.
+            if f.get('pattern'):
+                f['pattern'] = v.Regexp(f['pattern'])
+            if f.get('choices'):
+                f['choices'] = v.OneOf(f['choices'])
+            if f.get('operators'):
+                f['operators'] = v.OneOf(f['operators'])
 
-        # Return the modified filter to the caller.
-        return f
+            # Return the modified filter to the caller.
+            return f
+        return dict()
 
     @validates_schema
     def validate_against_filter(self, item, **kwargs):
