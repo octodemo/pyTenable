@@ -13,7 +13,7 @@ Welcome to pyTenable's documentation!
    :target: https://github.com/tenable/pytenable
 
 pyTenable is intended to be a pythonic interface into the Tenable application 
-APIs.  Further by providing a common interface and a common structure between 
+APIs. Further by providing a common interface and a common structure between 
 all of the various applications, we can ease the transition from the vastly 
 different APIs between some of the products.
 
